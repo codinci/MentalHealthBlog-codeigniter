@@ -53,9 +53,7 @@ class Filters extends BaseConfig
      *
      * @var array
      */
-    public $methods = [
-        'post'=> ['csrf'],
-    ];
+    public $methods = [];
 
     /**
      * List of filter aliases that should run on any
