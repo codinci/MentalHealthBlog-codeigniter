@@ -8,19 +8,35 @@
         <title>Mental health Blog</title>
     </head>
     <body>
+        <?php
+            $uri = service('uri');
+        ?>
+
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/home">Home</a>
+                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="/home">Home</a>
-                        <a class="nav-link" href="/topics">Topics</a>
-                        <a class="nav-link" href="/about">About Us</a>
+
+                    <?php if (session()->get('isLoggedIn')): ?>
+                        <a class="nav-link <?= ($uri->getSegment(1)== 'dashboard'? 'active' : null) ?>" href="/dashboard">Dashboard</a>
+                        <a class="nav-link <?= ($uri->getSegment(1)== 'profile'? 'active' : null) ?>" href="/profile">Profile</a>  
+                        <ul class="navbar-nav my-2 my-lg-0">     
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">Logout</a>
+                            </li>              
+                        </ul>   
+                    <?php else: ?>
+                
+                        <a class="nav-link <?= ($uri->getSegment(1)== 'home'? 'active' : null) ?>" href="/home">Home</a>
+                        <a class="nav-link <?= ($uri->getSegment(1)== 'topics'? 'active' : null) ?>" href="/topics">Topics</a>
+                        <a class="nav-link <?= ($uri->getSegment(1)== 'about'? 'active' : null) ?>" href="/about">About Us</a>
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
         </nav>
 
