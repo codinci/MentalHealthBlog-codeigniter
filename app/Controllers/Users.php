@@ -99,4 +99,54 @@ class Users extends BaseController
         echo view('register');
         echo view('templates/footer');
     }
+
+    public function profile()
+    {
+        $data = [];
+        helper(['form']);
+        $model = new UsersModel();
+
+        if ($this->request->getMethod()== 'post') {
+            
+            $rules = [
+                'firstname' => 'required|min_length[3]|max_length[70]',
+                'lastname' => 'required|min_length[3]|max_length[70]',
+            ];
+
+            if($this->request->getPost('password') !== '')
+            {
+                $rules['password'] = 'required|min_length[8]|max_length[255]';
+                $rules['password_confirm'] = 'matches[password]';
+            }
+
+            if (! $this->validate($rules)) {
+                $data['validation'] = $this->validator;
+            }else {
+                
+                $newData = [
+                    'id' => session()->get('id'),
+                    'firstname' => $this->request->getPost('firstname'),
+                    'lastname' => $this->request->getPost('lastname'),
+                                       
+                ];
+                if($this->request->getPost('password') !== '')
+                {
+                    $newData['password'] = $this->request->getPost('password');
+                }
+
+                $model->save($newData);
+
+
+                session()->setFlashdata('success','Successful update');
+                return redirect()->to('profile');
+            }
+        }
+
+        $data['user'] = $model->where('id',session()->get('id'))->first();
+
+        echo view('templates/header',$data);
+        echo view('profile');
+        echo view('templates/footer');
+
+    }
 }

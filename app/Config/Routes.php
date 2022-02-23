@@ -35,6 +35,7 @@ $routes->get('/', 'Pages::index');
 $routes->get('login','Users::index');
 $routes->match(['get','post'],'register','Users::register');
 $routes->get('dashboard','Dashboard::index');
+$routes->get('profile','Users::profile');
 $routes->match(['get', 'post'], 'topics/create','Topics::create');
 $routes->get('topics/(:segment)', 'Topics::view/$1');
 $routes->get('topics','Topics::index');
