@@ -36,7 +36,16 @@
                                 <label for="password_confirm">Confirm Password</label>
                                 <input type="password" class="form-control" name="password_confirm" id="password_confirm" value="">
                             </div>
-                        </div>    
+                        </div> 
+                        <div class="col-6">
+                            <div class="form-group">
+                                <select class="form-select mt-3" name="role" id="role">
+                                    <option value="" selected>Select position</option>
+                                    <option value="1" <?= set_select('role', '1', true)?> >Psychiatrist</option>
+                                    <option value="2" <?= set_select('role', '2')?> >Patient</option>
+                                </select>
+                            </div>
+                        </div>   
                         <?php if(isset($validation)):?>
                             <div class="row">
                                 <div class="alert alert-danger" role="alert">

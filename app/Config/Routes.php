@@ -32,10 +32,11 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Pages::index');
-$routes->get('login','Users::index');
-$routes->match(['get','post'],'register','Users::register');
-$routes->get('dashboard','Dashboard::index');
-$routes->get('profile','Users::profile');
+$routes->match(['get','post'],'login','Users::index',['filter' => 'noauth']);
+$routes->get('dashboard','Dashboard::index',['filter' => 'auth']);
+$routes->get('logout','Users::logout');
+$routes->match(['get','post'],'register','Users::register',['filter' => 'noauth']);
+$routes->match(['get','post'],'profile','Users::profile',['filter' => 'auth']);
 $routes->match(['get', 'post'], 'topics/create','Topics::create');
 $routes->get('topics/(:segment)', 'Topics::view/$1');
 $routes->get('topics','Topics::index');

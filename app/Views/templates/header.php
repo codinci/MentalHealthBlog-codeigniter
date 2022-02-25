@@ -22,13 +22,20 @@
                     <div class="navbar-nav">
 
                     <?php if (session()->get('isLoggedIn')): ?>
-                        <a class="nav-link <?= ($uri->getSegment(1)== 'dashboard'? 'active' : null) ?>" href="/dashboard">Dashboard</a>
-                        <a class="nav-link <?= ($uri->getSegment(1)== 'profile'? 'active' : null) ?>" href="/profile">Profile</a>  
-                        <ul class="navbar-nav my-2 my-lg-0">     
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="/logout">Logout</a>
-                            </li>              
-                        </ul>   
+                                <a class="nav-link <?= ($uri->getSegment(1)== 'dashboard'? 'active' : null) ?>" href="/dashboard" href="/dashboard">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link <?= ($uri->getSegment(1)== 'profile'? 'active' : null) ?>" href="/profile" href="/profile">Profile</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link <?= ($uri->getSegment(1)== 'logout'? 'active' : null) ?>" href="/logout" href="/logout">Logout</a>
+                            </li>
+                        </ul>
+                       
                     <?php else: ?>
                 
                         <a class="nav-link <?= ($uri->getSegment(1)== 'home'? 'active' : null) ?>" href="/home">Home</a>

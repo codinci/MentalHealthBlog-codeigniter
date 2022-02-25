@@ -7,10 +7,10 @@
                 <hr>
                 <?php if(session()->get('success')):?>
                     <div class="alert alert-success" role="alert">
-                        <? session()->get('success') ?>
+                        <?= session()->get('success') ?>
                     </div>
                 <?php endif; ?>
-                <form class="" action="/" method="post">
+                <form class="" action="/login" method="post">
                     <div class="form-group">
                         <label for="email">Email address</label>
                         <input type="text" class="form-control" name="email" id="email" value="<?= set_value('email') ?>">

@@ -89,7 +89,7 @@ class Users extends BaseController
 
                 $model->save($newData);
 
-                $session =session();
+                $session = session();
                 $session->setFlashdata('success','Successful registration');
                 return redirect()->to('login');
             }
@@ -148,5 +148,11 @@ class Users extends BaseController
         echo view('profile');
         echo view('templates/footer');
 
+    }
+
+    public function logout() 
+    {
+        session()->destroy();
+        return redirect()->to('/');
     }
 }
